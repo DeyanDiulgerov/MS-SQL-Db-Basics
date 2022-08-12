@@ -1,0 +1,4 @@
+SELECT e.FirstName + ' ' + e.LastName AS FullName,
+	(SELECT COUNT(DISTINCT UserId) FROM Reports WHERE e.Id = EmployeeId) AS UsersCount
+	FROM Employees AS e
+	ORDER BY UsersCount DESC, FullName

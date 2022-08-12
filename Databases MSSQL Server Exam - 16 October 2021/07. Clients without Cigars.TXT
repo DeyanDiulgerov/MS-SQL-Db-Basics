@@ -1,0 +1,6 @@
+SELECT  Id,
+		FirstName + ' ' + LastName AS ClientName,
+		Email
+		FROM Clients
+		WHERE NOT EXISTS (SELECT 1 FROM ClientsCigars WHERE ClientId = Id)
+		ORDER BY ClientName

@@ -1,0 +1,16 @@
+CREATE FUNCTION udf_ClientWithCigars(@name VARCHAR(30))
+RETURNS INT
+AS
+BEGIN
+		DECLARE @clientId INT = (   
+									SELECT [Id]
+									FROM Clients
+									WHERE FirstName = @name
+								)
+		DECLARE @cigarsCnt INT = (
+									SELECT COUNT(ClientId)
+									FROM ClientsCigars
+									WHERE ClientId = @clientId
+								 )
+		RETURN @cigarsCnt
+END

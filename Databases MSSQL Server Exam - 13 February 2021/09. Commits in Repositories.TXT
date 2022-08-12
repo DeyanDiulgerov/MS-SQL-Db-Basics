@@ -1,0 +1,7 @@
+SELECT TOP(5) r.Id, r.[Name],
+			  COUNT(*) AS CommitsCount
+	FROM Commits AS c
+	JOIN Repositories AS r ON r.Id = c.RepositoryId
+	JOIN RepositoriesContributors AS rc ON rc.RepositoryId = c.RepositoryId
+	GROUP BY r.Id, r.[Name]
+	ORDER BY CommitsCount DESC, r.Id, r.[Name]

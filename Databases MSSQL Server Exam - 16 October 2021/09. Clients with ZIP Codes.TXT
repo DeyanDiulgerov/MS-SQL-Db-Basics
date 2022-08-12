@@ -1,0 +1,11 @@
+SELECT  c.FirstName + ' ' + c.LastName AS ClientName,
+		a.Country,
+		a.ZIP,
+		FORMAT(PriceForSingleCigar, 'C') AS '$'
+	FROM Clients AS c
+	JOIN Addresses AS a ON a.Id = c.AddressId
+	JOIN ClientsCigars AS cc ON cc.ClientId = c.Id
+	JOIN Cigars AS ci ON ci.Id = cc.CigarId
+	WHERE TRY_CAST(ZIP AS NUMERIC) IS NOT NULL
+	AND ci.Id IN (12, 39)
+	ORDER BY ClientName
